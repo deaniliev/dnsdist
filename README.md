@@ -54,13 +54,13 @@ Requires=docker.service
 
 [Service]
 KillMode=none
-ExecStartPre=-/usr/bin/docker kill dnsdist
-ExecStartPre=-/usr/bin/docker rm dnsdist
+ExecStartPre=/usr/bin/docker kill dnsdist
+ExecStartPre=/usr/bin/docker rm dnsdist
 ExecStart=/usr/bin/docker run -t \
           --name dnsdist \
           -p 53:53/tcp \
           -p 53:53/udp \
           -v /data/dnsdist/:/etc/dnsdist/ \
           deanski79/dnsdist
-ExecStop=-/usr/bin/docker stop dnsdist
+ExecStop=/usr/bin/docker stop dnsdist
 ```
